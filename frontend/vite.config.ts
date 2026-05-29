@@ -8,6 +8,9 @@ import viteReact from "@vitejs/plugin-react";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [tanstackRouter(), viteReact(), tsconfigPaths()],
+  define: {
+    __BUILD_DATE__: JSON.stringify(new Date().toISOString()),
+  },
   test: {
     globals: true,
     environment: "jsdom",
