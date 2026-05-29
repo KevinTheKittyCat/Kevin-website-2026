@@ -13,6 +13,7 @@ import { Route as SignupRouteImport } from './routes/signup'
 import { Route as LoginRouteImport } from './routes/login'
 import { Route as LayoutRouteImport } from './routes/_layout'
 import { Route as LayoutIndexRouteImport } from './routes/_layout/index'
+import { Route as LayoutCVRouteImport } from './routes/_layout/CV'
 
 const SignupRoute = SignupRouteImport.update({
   id: '/signup',
@@ -33,15 +34,22 @@ const LayoutIndexRoute = LayoutIndexRouteImport.update({
   path: '/',
   getParentRoute: () => LayoutRoute,
 } as any)
+const LayoutCVRoute = LayoutCVRouteImport.update({
+  id: '/CV',
+  path: '/CV',
+  getParentRoute: () => LayoutRoute,
+} as any)
 
 export interface FileRoutesByFullPath {
   '/': typeof LayoutIndexRoute
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/CV': typeof LayoutCVRoute
 }
 export interface FileRoutesByTo {
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/CV': typeof LayoutCVRoute
   '/': typeof LayoutIndexRoute
 }
 export interface FileRoutesById {
@@ -49,14 +57,21 @@ export interface FileRoutesById {
   '/_layout': typeof LayoutRouteWithChildren
   '/login': typeof LoginRoute
   '/signup': typeof SignupRoute
+  '/_layout/CV': typeof LayoutCVRoute
   '/_layout/': typeof LayoutIndexRoute
 }
 export interface FileRouteTypes {
   fileRoutesByFullPath: FileRoutesByFullPath
-  fullPaths: '/' | '/login' | '/signup'
+  fullPaths: '/' | '/login' | '/signup' | '/CV'
   fileRoutesByTo: FileRoutesByTo
-  to: '/login' | '/signup' | '/'
-  id: '__root__' | '/_layout' | '/login' | '/signup' | '/_layout/'
+  to: '/login' | '/signup' | '/CV' | '/'
+  id:
+    | '__root__'
+    | '/_layout'
+    | '/login'
+    | '/signup'
+    | '/_layout/CV'
+    | '/_layout/'
   fileRoutesById: FileRoutesById
 }
 export interface RootRouteChildren {
@@ -95,14 +110,23 @@ declare module '@tanstack/react-router' {
       preLoaderRoute: typeof LayoutIndexRouteImport
       parentRoute: typeof LayoutRoute
     }
+    '/_layout/CV': {
+      id: '/_layout/CV'
+      path: '/CV'
+      fullPath: '/CV'
+      preLoaderRoute: typeof LayoutCVRouteImport
+      parentRoute: typeof LayoutRoute
+    }
   }
 }
 
 interface LayoutRouteChildren {
+  LayoutCVRoute: typeof LayoutCVRoute
   LayoutIndexRoute: typeof LayoutIndexRoute
 }
 
 const LayoutRouteChildren: LayoutRouteChildren = {
+  LayoutCVRoute: LayoutCVRoute,
   LayoutIndexRoute: LayoutIndexRoute,
 }
 
