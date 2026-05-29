@@ -14,8 +14,8 @@ export function WhereToFindMe() {
             position="absolute" left={4} top={"50vh"} transform="translateY(-50%)"
             display={{ base: "none", md: "flex" }} flexDirection="column"
             gap={2} zIndex={1}
-            w={200} minH={200} p={4} border="1px solid var(--chakra-colors-ui-text)" borderRadius={8}
-            bg="ui.backgroundHighlight"
+            w={200} minH={200}
+            layerStyle="glassCard"
         >
             <Text fontWeight="bold">Where to find me</Text>
             <Link to="https://github.com/KevinTheKittyCat" target="_blank">

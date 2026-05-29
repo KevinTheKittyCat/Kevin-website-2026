@@ -1,6 +1,7 @@
 import { createSystem, defaultConfig } from "@chakra-ui/react"
 import { buttonRecipe } from "./theme/button.recipe"
 import { linkRecipe } from "./theme/link.recipe"
+import layerStyles from "./theme/combinedLayerStyles"
 
 export const system = createSystem(defaultConfig, {
   globalCss: {
@@ -35,12 +36,17 @@ export const system = createSystem(defaultConfig, {
           secondary: { value: "#7E52A0" },
           accent: { value: "#F0F600" },
           background: { value: "#080808" },
-          backgroundHighlight: { value: "#ffffff09" },
           text: { value: "#ffffff" },
           mainText: { value: "#ffffff" },
         },
+        card: {
+          glassBackground: { value: "#ffffff09" },
+          glassBorder: { value: "#ffffffc0" },
+          glassText: { value: "#ffffff" },
+        },
       },
     },
+    layerStyles: layerStyles,
     recipes: {
       button: buttonRecipe,
       link: linkRecipe,
