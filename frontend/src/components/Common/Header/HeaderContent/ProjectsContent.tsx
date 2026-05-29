@@ -20,7 +20,7 @@ const cards = [
 export function ProjectsContent() {
 
     return (
-        <Flex direction="row" className="header-content-section" w="100%" gap={4} m="0 auto" maxW="1400px">
+        <Flex direction="row" className="header-content-section" w="100%" gap={4} m="0 auto" maxW="breakpoint-xl">
             <Flex className="header-cards-container" w="100%">
                 {cards.map((card, i) => {
                     return (

@@ -15,7 +15,7 @@ export default function Header() {
     <HeaderContextProvider>
       <HeaderWrapper>
         <HoverHighlighter />
-        <Flex alignItems="center" zIndex={1} position="fixed" top={0} left={0} right={0} p={4} gap={2} w="100%" maxW="1200px" m="0 auto">
+        <Flex alignItems="center" zIndex={1} position="fixed" top={0} left={0} right={0} p={4} gap={2} w="100%" maxW="breakpoint-xl" m="0 auto">
           <Flex w="100%" alignItems="center" gap={4}>
             <HeaderButton navLink="/">Home</HeaderButton>
           </Flex>
