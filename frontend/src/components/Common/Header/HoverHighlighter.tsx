@@ -18,6 +18,7 @@ export function HoverHighlighter() {
             //backgroundColor: "blue",
             transition: "all 0.2s ease",
             borderRadius: 2,
+            zIndex: 2,
             border: "1px solid var(--chakra-colors-ui-main)",
             ...hoverStyle 
         }}

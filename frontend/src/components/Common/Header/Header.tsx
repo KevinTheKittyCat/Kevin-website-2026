@@ -14,11 +14,19 @@ export default function Header() {
   return (
     <HeaderContextProvider>
       <HeaderWrapper>
-        <Flex alignItems="center" position="fixed" top={0} left={0} right={0} zIndex={1000} p={4} gap={2} w="100%">
-          <h1>Header</h1>
-          <HoverHighlighter />
-          <HeaderButton navLink="/">Home</HeaderButton>
-          <HeaderButton navLink="/projects" content={ProjectsContent}>Projects</HeaderButton>
+        <HoverHighlighter />
+        <Flex alignItems="center" zIndex={1} position="fixed" top={0} left={0} right={0} p={4} gap={2} w="100%" maxW="1200px" m="0 auto">
+          <Flex w="100%" alignItems="center" gap={4}>
+            <HeaderButton navLink="/">Home</HeaderButton>
+          </Flex>
+          <Flex w="100%" alignItems="center" gap={4} justifyContent="center">
+            <HeaderButton navLink="/projects" content={ProjectsContent}>Projects</HeaderButton>
+            <HeaderButton disabled navLink="/bio">Bio</HeaderButton>
+            <HeaderButton navLink="/cv">CV</HeaderButton>
+          </Flex>
+          <Flex w="100%" alignItems="center" gap={4} justifyContent="flex-end">
+            <HeaderButton navLink="/contact">Contact</HeaderButton>
+          </Flex>
         </Flex>
         <HeaderContent />
       </HeaderWrapper>

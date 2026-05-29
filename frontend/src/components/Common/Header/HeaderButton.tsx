@@ -1,7 +1,7 @@
-import { useRef, useCallback } from "react";
+import { useRef, useCallback, useMemo } from "react";
 import { Button } from "@chakra-ui/react";
 import { useHeader } from "./useHeader";
-import { useNavigate } from "@tanstack/react-router";
+import { useLocation, useNavigate } from "@tanstack/react-router";
 
 
 
@@ -19,8 +19,13 @@ export function HeaderButton({
     ...props }: HeaderButtonProps & React.ComponentProps<typeof Button>
 ) {
     const navigate = useNavigate();
+    const location = useLocation();
     const { hoverStyle, setHoverStyle, setContent } = useHeader();
     const ref = useRef<HTMLButtonElement>(null)
+    const isActive = useMemo(() => {
+        console.log("Checking active for", navLink, "current path:", location.pathname)
+        return location.pathname === navLink
+    }, [navLink, location.pathname])
 
     const onHover = useCallback(() => {
         // Doesn't update content if content changes.
@@ -55,6 +60,7 @@ export function HeaderButton({
         onBlur={onInteractLeave}
         onClick={onClick}
         variant="ghost"
+        color={isActive ? "ui.mainActive" : "ui.main"}
         className={`header-button`}
         {...props}
     >

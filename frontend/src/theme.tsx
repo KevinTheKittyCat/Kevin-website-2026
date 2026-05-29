@@ -31,6 +31,7 @@ export const system = createSystem(defaultConfig, {
       colors: {
         ui: {
           main: { value: "#ff3269ff" },
+          mainActive: { value: "hsl(344, 100%, 40%)" },
           secondary: { value: "#7E52A0" },
           accent: { value: "#F0F600" },
           background: { value: "#080808" },
