@@ -4,6 +4,7 @@ import React, { Suspense } from "react"
 import NotFound from "@/components/Common/NotFound"
 import Sidebar from "@/components/Common/Sidebar/Sidebar"
 import { Container } from "@chakra-ui/react"
+import Header from "@/components/Common/Header/Header"
 
 const loadDevtools = () =>
   Promise.all([
@@ -34,7 +35,8 @@ export const Route = createRootRoute({
     return (
       <>
         <Container className="layout-container" display="flex" minH="100vh" p={0} maxW="full" w="100%">
-          {showSidebar && <Sidebar />}
+          {/*showSidebar && <Sidebar />*/}
+          <Header />
           <Outlet />
         </Container>
         <Suspense>

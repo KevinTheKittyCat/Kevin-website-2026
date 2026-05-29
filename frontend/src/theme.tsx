@@ -1,5 +1,6 @@
 import { createSystem, defaultConfig } from "@chakra-ui/react"
 import { buttonRecipe } from "./theme/button.recipe"
+import { linkRecipe } from "./theme/link.recipe"
 
 export const system = createSystem(defaultConfig, {
   globalCss: {
@@ -10,10 +11,19 @@ export const system = createSystem(defaultConfig, {
       fontSize: "0.875rem",
       margin: 0,
       padding: 0,
+      backgroundColor: "ui.background",
+      color: "ui.text",
     },
     ".main-link": {
       color: "ui.main",
       fontWeight: "bold",
+    },
+    a: {
+      color: "ui.main",
+      textDecoration: "none",
+      _hover: {
+        textDecoration: "underline",
+      },
     },
   },
   theme: {
@@ -23,14 +33,15 @@ export const system = createSystem(defaultConfig, {
           main: { value: "#ff3269ff" },
           secondary: { value: "#7E52A0" },
           accent: { value: "#F0F600" },
-          background: { value: "#ffffff" },
-          text: { value: "#050404" },
+          background: { value: "#080808" },
+          text: { value: "#ffffff" },
           mainText: { value: "#ffffff" },
         },
       },
     },
     recipes: {
       button: buttonRecipe,
+      link: linkRecipe,
     },
   },
 })

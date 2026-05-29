@@ -17,13 +17,13 @@ import { emailPattern, passwordRules } from "../utils"
 
 export const Route = createFileRoute("/login")({
   component: Login,
-  beforeLoad: async () => {
+  /*beforeLoad: async () => {
     if (isLoggedIn()) {
       throw redirect({
         to: "/",
       })
     }
-  },
+  },*/
 })
 
 function Login() {
