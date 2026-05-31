@@ -20,7 +20,7 @@ function Layout() {
       {/*<Navbar />*/}
       <Flex flex="1" overflow="hidden">
         {/*<Sidebar />*/}
-        <Flex flex="1" direction="column" overflowY="auto">
+        <Flex flex="1" direction="column" overflowY="auto" pt={"80px"}>
           <Outlet />
         </Flex>
       </Flex>

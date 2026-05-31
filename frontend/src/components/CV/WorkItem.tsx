@@ -1,4 +1,5 @@
-import { useState } from "react"
+import { useMemo, useState } from "react"
+import { Text, Flex } from "@chakra-ui/react"
 //import OnHoverItem from "./onHoverItem"
 
 export interface WorkItem {
@@ -23,34 +24,45 @@ export function WorkItem({ data }: { data: WorkItem }) {
     }
 
     return (
-        <div className="right-bar-item row" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
+        <Flex className="right-bar-item row" onMouseEnter={handleHover} onMouseLeave={handleLeave}>
             <WorkItemPc data={data} />
             {/*<WorkItemPhone data={data} />*/}
             {/* <OnHoverItem image={data?.image} hovering={hover} video={data?.video} /> */}
-        </div>
+        </Flex>
     )
 }
 
 const WorkItemPc = ({ data }: { data: WorkItem }) => {
+    const year = useMemo(() => {
+        if (!data?.year?.from && !data?.year?.to) return "";
+        if (data?.year?.from && !data?.year?.to) return data.year.from;
+        if (!data?.year?.from && data?.year?.to) return data.year.to;
+        if (data.year.from === data.year.to) return data.year.from;
+        return `${data.year.from} - ${data.year.to}`;
+    }, [data?.year])
+
 
     return (
-        <div className="on-pc-only row stretch-width">
-            <div className="column stretch-width flex-end">
-                <h3>{data?.role}</h3>
-                <p>{data?.year?.from ?? data?.year?.to} {data?.year?.from && data?.year?.to ? `- ${data?.year?.to}` : ''}</p>
-            </div>
-            <div>
-                <div className={data?.boldTitle ? "cv-big-circle" : "cv-circle"} />
-            </div>
-            <div className="column stretch-width">
-                {data?.boldTitle ? <h2 className="active">{data?.title}</h2> : <h3>{data?.title}</h3>}
+        <Flex direction="column">
+            <Flex direction="column" className="column stretch-width flex-end">
+
+                {data?.boldTitle ?
+                    <Text textStyle="md" className="active">{data?.title}</Text> :
+                    <Text textStyle="md">{data?.title}</Text>
+                }
+                <Flex gap={4} alignItems="end">
+                    <Text textStyle="2xl">{data?.role}</Text>
+                    <Text textStyle="md" fontWeight="light" fontStyle="italic">{year}</Text>
+                </Flex>
+            </Flex>
+            <Flex direction="column" className="column stretch-width">
                 {data?.description.map((text, i) => {
                     return (
                         <p key={i}>{text}</p>
                     )
                 })}
-            </div>
-        </div>
+            </Flex>
+        </Flex>
     )
 }
 

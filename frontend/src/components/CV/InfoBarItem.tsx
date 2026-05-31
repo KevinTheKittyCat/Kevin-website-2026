@@ -3,19 +3,20 @@ import { motion } from "framer-motion";
 import { Link } from "@tanstack/react-router";
 import { InfoBarItemData } from "./interface";
 import { FiArrowDown } from "react-icons/fi";
+import { Flex, Text } from "@chakra-ui/react"
 
 
 export function InfoBarItem({ data }: { data: InfoBarItemData }) {
 
     return (
-        <div className=" column big-gap small-gap">
-            {data.title && <h2>{data.title}</h2>}
+        <Flex direction="column" gap={2} className=" column big-gap small-gap">
+            {data.title && <Text textStyle="2xl">{data.title}</Text>}
 
             {data.points?.map((point, i) => {
                 return (<Point point={point} key={i} />)
             })
             }
-        </div>
+        </Flex>
     )
 }
 
@@ -25,23 +26,23 @@ const Point = ({ point, subpoint = false }: { point: any, subpoint?: boolean }) 
     const titleRef = useRef(null);
 
     return (
-        <div className={"language column no-gap stretch-width" + (subpoint ? " cv-sub-point" : "")}>
-            <button className={"flex-start no-padding left-align-text stretch-width" + (open ? " active" : "")}
+        <Flex direction="column" gap={0} ml={2} className={"language column no-gap stretch-width" + (subpoint ? " cv-sub-point" : "")}>
+            <button
                 onClick={() => point.dropdown && setOpen(!open)} ref={titleRef}>
-                <h3 className={"row " + (point.dropdown ? " flex-apart" : " flex-start")}>
+                <Flex gap={2} alignItems="center">
                     {point.title}
                     {point.dropdown && <FiArrowDown style={{
                         transform: open ? "rotate(0deg)" : "rotate(-90deg)",
                         transition: "transform 0.3s"
                     }} />}
-                </h3>
+                </Flex>
             </button>
             <motion.div
                 className={"sub-point-container " + ((point.dropdown && !open) ? " closed " : "")}
                 initial={{ height: "auto" }}
                 animate={{ height: (point.dropdown && !open) ? 0 : "auto" }}
                 transition={{ duration: 0.3 }}
-                style={{ overflow: "hidden" }}
+                style={{ overflow: "hidden", marginLeft: 10 }}
             >
                 {point?.sub?.map((sub: InfoBarItemData["sub"], i: number) => {
                     return (
@@ -49,7 +50,7 @@ const Point = ({ point, subpoint = false }: { point: any, subpoint?: boolean }) 
                     )
                 })}
             </motion.div>
-        </div>
+        </Flex>
     )
 }
 
